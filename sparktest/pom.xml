@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.arquillos.sparktest</groupId>
@@ -13,4 +14,21 @@
 	  <version>2.1.0</version>
 	</dependency>
   </dependencies>
+=======
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.arquillos.sparktest</groupId>
+  <artifactId>sparktest</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>spark-test</name>
+
+  <dependencies>
+	<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-core_2.11 -->
+	<dependency>
+	  <groupId>org.apache.spark</groupId>
+	  <artifactId>spark-core_2.11</artifactId>
+	  <version>2.1.0</version>
+	</dependency>
+  </dependencies>
+>>>>>>> df30b26d084318848a16715c610e1050f73188cd
 </project>
