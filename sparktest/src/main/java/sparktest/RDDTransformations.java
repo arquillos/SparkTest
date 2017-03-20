@@ -3,9 +3,13 @@ package sparktest;
 import java.util.Arrays;
 
 import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
+
+import scala.Tuple2;
+
 import org.apache.spark.api.java.function.FlatMapFunction;
 
 import java.util.Iterator; 
@@ -18,10 +22,11 @@ public class RDDTransformations {
 		
 		sc.setLogLevel("WARN");
 
+		
 		System.out.println();
 		System.out.println("----------------------");
 		System.out.println("--- Filter");
-		JavaRDD<String> lines = sc.textFile("/var/log/messages");
+		JavaRDD<String> lines = sc.textFile("The_Adventures_of_Sherlock_Holmes.txt");
 		
 		@SuppressWarnings("serial")
 		JavaRDD<String> filteredLines = lines.filter(
@@ -100,19 +105,35 @@ public class RDDTransformations {
 			System.out.println(line);		
 		System.out.println("----------------------");
 		System.out.println("--- Union");
-
 		JavaRDD<Integer> unionRDD = firstRDD.union(secondRDD);
 		System.out.println("--- Union RDD");
 		for(Integer line: unionRDD.collect())
 			System.out.println(line);		
+		System.out.println();
+				
+		System.out.println("----------------------");
+		System.out.println("--- Inersection");
+		JavaRDD<Integer> intersectionRDD = firstRDD.intersection(secondRDD);
+		System.out.println("--- Intersection RDD");
+		for(Integer number: intersectionRDD.collect())
+			System.out.println(number);
+		System.out.println();
 		
+		System.out.println("----------------------");
+		System.out.println("--- Subtract");
+		JavaRDD<Integer> subtractRDD = firstRDD.subtract(secondRDD);
+		System.out.println("--- Subtract RDD");
+		for(Integer number: subtractRDD.collect())
+			System.out.println(number);
+		System.out.println();
 		
 		System.out.println("----------------------");
-		System.out.println("--- Sample");
-		System.out.println("----------------------");
-		System.out.println("--- Sample");
-		System.out.println("----------------------");
-		System.out.println("--- Sample");
+		System.out.println("--- Cartesian");
+		JavaPairRDD<Integer, Integer> cartesianRDD = firstRDD.cartesian(secondRDD);
+		for(Tuple2<Integer, Integer> tuple: cartesianRDD.collect())
+			System.out.println("(" + tuple._1 + ", " + tuple._2 + ")");
+		System.out.println();
+		
 		
 		sc.close();
 	}
